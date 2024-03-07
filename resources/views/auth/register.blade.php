@@ -38,7 +38,14 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-
+        <!-- Register as organisator -->
+        <div class="mt-4">
+            <label for="asOrganisateur" class="inline-flex items-center">
+                <input id="asOrganisateur" type="checkbox" class="form-checkbox" name="asOrganisateur">
+                <span class="ml-2">&nbsp;&nbsp;{{ __('Je suis Organisateur') }}</span>
+            </label>
+        </div>
+        <br><br>
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}

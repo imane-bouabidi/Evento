@@ -9,6 +9,7 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $table = 'event';
     protected $fillable = [
         'user_id',
         'titre',
@@ -33,6 +34,6 @@ class Event extends Model
 
     public function reservations()
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(Reservation::class, 'event_id', 'id');
     }
 }

@@ -170,7 +170,7 @@
                     <div id="page-container" class="flex items-center justify-center h-screen">
                         <div class="bg-white w-full md:w-1/2 p-8 shadow-lg rounded-md">
                             <h1 class="text-3xl font-bold mb-6">Modifier Evenement</h1>
-                            <form action="{{route('UpdateEvent')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('UpdateEvent', $event->id)}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4">
                                     <label for="titre" class="text-sm font-semibold text-gray-600">titre</label>

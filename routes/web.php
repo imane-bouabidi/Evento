@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//admin
 
 Route::get('/adminDash', [HomeController::class, 'adminDash'])->name('adminDash');
 Route::get('/updateUsers/{user_id}', [HomeController::class, 'updateUsers'])->name('updateUsers');
@@ -40,6 +41,9 @@ Route::get('/updateCategoryDATA/{id}', [HomeController::class, 'updateCategoryDA
 Route::get('/addCategory', [HomeController::class, 'addCategory'])->name('addCategory');
 Route::get('/AddCat', [HomeController::class, 'AddCat'])->name('AddCat');
 Route::get('/statistiques', [HomeController::class, 'Statistiques'])->name('statistiques');
+Route::get('/evenements', [HomeController::class, 'evenements'])->name('evenements');
+Route::get('/valide_event_statut/{id}', [HomeController::class, 'valide_event_statut'])->name('valide_event_statut');
+Route::get('/rejeter_event_statut/{id}', [HomeController::class, 'rejeter_event_statut'])->name('rejeter_event_statut');
 
 
 // organisateur 
@@ -49,8 +53,9 @@ Route::get('/updateEvent', [HomeController::class, 'updateEvent'])->name('update
 Route::get('/addEventView', [HomeController::class, 'addEventView'])->name('addEventView');
 Route::post('/AddEvent', [HomeController::class, 'AddEvent'])->name('AddEvent');
 Route::post('/updateEventView/{id}', [HomeController::class, 'updateEventView'])->name('updateEventView');
-Route::post('/UpdateEvent', [HomeController::class, 'updateEventView'])->name('UpdateEvent');
+Route::post('/UpdateEvent/{id}', [HomeController::class, 'UpdateEvent'])->name('UpdateEvent');
 
 
 
+Route::get('/home', [HomeController::class, 'homeIndex'])->name('home');
 require __DIR__.'/auth.php';

@@ -93,7 +93,7 @@
                     <ul class="flex items-center">
 
                         <li>
-                            <a href="{{ route('home') }}"
+                            <a href="{{route('index')}}"
                                 class="flex items-end justify-end mr-4 hover:text-blue-100">
                                 <span class="inline-flex mr-1">
                                 </span>

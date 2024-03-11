@@ -18,7 +18,7 @@ class HomeController extends Controller
         $users = User::all();
         return view('admin.adminDashboard', compact('users'));
     }
-    
+
     public function updateUsers($user_id)
     {
         $roles = Role::all();
@@ -37,15 +37,15 @@ class HomeController extends Controller
 
         return redirect()->route('adminDash')->with('success', 'Rôle utilisateur mis à jour avec succès');
     }
-    
+
 
 
 
     public function updateCategoryDATA(Request $request, $id)
     {
         $categorie = Categorie::findOrFail($id);
-        
-        
+
+
         $categorie->name = $request->catName;
         $categorie->save();
 
@@ -92,10 +92,10 @@ class HomeController extends Controller
         return redirect()->route('categories');
     }
 
-    
+
     //categorie
-    
-    
+
+
     public function organisateurDash()
     {
         $events = Event::all();
@@ -118,7 +118,7 @@ class HomeController extends Controller
             'categorie' => 'required|exists:categorie,id',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        
+
         $imagePath = $request->file('image')->store('event_images', 'public');
         $imageName = basename($imagePath);
 
@@ -145,8 +145,8 @@ class HomeController extends Controller
         $dateForInput = Carbon::parse($dateFromDatabase)->format('Y-m-d'); // Convertir la date au format HTML5
         return view('organisateur.UpdateEventView', compact(['event', 'categories', 'dateForInput']));
     }
-    
-    
+
+
     public function UpdateEvent(Request $request, $id)
     {
         $event = Event::findOrFail($id);
@@ -167,12 +167,12 @@ class HomeController extends Controller
             $imagePath = $request->file('image')->store('public/event_images');
 
             $imageName = basename($imagePath);
-            
+
             $event->image = $imageName;
         }
-        
+
         $event->save();
-        
+
         return redirect()->route('organisateurDash');
     }
     public function evenements()
@@ -180,22 +180,36 @@ class HomeController extends Controller
         $evenements = Event::all();
         return view('admin.events.events', compact('evenements'));
     }
-        public function valide_event_statut($id)
-        {
-            $event = Event::findOrFail($id);
-            $event->statut = 'valide';
-            $event->save();
-            return redirect()->route('evenements');
-        }
-        public function rejeter_event_statut($id)
-        {
-            $event = Event::findOrFail($id);
-            $event->statut = 'rejete';
-            $event->save();
-            return redirect()->route('evenements');
-        }
-        public function homeIndex()
-        {
-            return view('home');
-        }
+    public function valide_event_statut($id)
+    {
+        $event = Event::findOrFail($id);
+        $event->statut = 'valide';
+        $event->save();
+        return redirect()->route('evenements');
+    }
+    public function rejeter_event_statut($id)
+    {
+        $event = Event::findOrFail($id);
+        $event->statut = 'rejete';
+        $event->save();
+        return redirect()->route('evenements');
+    }
+    public function Index()
+    {
+        $events = Event::where('statut', 'valide')->paginate(3);
+        return view('index', compact('events'));
+    }
+    public function details($id)
+    {
+        $event = Event::find($id);
+        return view('details', compact('event'));
+    }
+
+    public function search(Request $request)
+    {
+        $titre = $request->input('titre');
+        $events = Event::where('titre', 'LIKE', "%$titre%")->where('statut', 'valide')->get();
+        return view('index', compact('events'));
+    }
+
 }

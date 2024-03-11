@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect()->route('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -56,6 +56,8 @@ Route::post('/updateEventView/{id}', [HomeController::class, 'updateEventView'])
 Route::post('/UpdateEvent/{id}', [HomeController::class, 'UpdateEvent'])->name('UpdateEvent');
 
 
+Route::post('/search', 'HomeController@search')->name('search');
 
-Route::get('/home', [HomeController::class, 'homeIndex'])->name('home');
+Route::get('/details/{id}', [HomeController::class, 'details'])->name('details');
+Route::get('/index', [HomeController::class, 'Index'])->name('index');
 require __DIR__.'/auth.php';

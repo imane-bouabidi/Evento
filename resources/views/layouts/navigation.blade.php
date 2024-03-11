@@ -12,18 +12,18 @@
 
                 <!-- Navigation Links -->
                 @if (Auth::check())
-                <li>
-                    @if (Auth::user()->hasRole('admin'))
-                        <a href="{{ route('adminDash') }}">Dashboard</a>
-                    @endif
-                </li>
-                <li>
-                    @if (Auth::user()->hasRole('organisateur'))
-                        <a href="{{ route('organisateurDash') }}">Dashboard</a>
-                    @endif
-                </li>
-            @endif
-            
+                    <li>
+                        @if (Auth::user()->hasRole('admin'))
+                            <a href="{{ route('adminDash') }}">Dashboard</a>
+                        @endif
+                    </li>
+                    <li>
+                        @if (Auth::user()->hasRole('organisateur'))
+                            <a href="{{ route('organisateurDash') }}">Dashboard</a>
+                        @endif
+                    </li>
+                @endif
+
             </div>
 
             <!-- Settings Dropdown -->

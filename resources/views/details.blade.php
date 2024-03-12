@@ -107,33 +107,55 @@
                 <div class="row">
                     <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
                         <div class="about-img">
-                            <img src="{{asset('storage/event_images/' . $event->image)}}" alt="">
+                            <img src="{{ asset('storage/event_images/' . $event->image) }}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                        <h3>{{$event->titre}}</h3>
+                        <h3>{{ $event->titre }}</h3>
                         <p class="fst-italic">
                         </p>
                         <ul>
                             <li>
-                                <i class="bi bi-check-circle"> Date : </i> {{$event->date}}
+                                <i class="bi bi-check-circle"> Date : </i> {{ $event->date }}
                             </li>
                             <li>
-                                <i class="bi bi-check-circle"> Lieu :</i> {{$event->lieu}}
+                                <i class="bi bi-check-circle"> Lieu :</i> {{ $event->lieu }}
                             </li>
                             <li>
-                                <i class="bi bi-check-circle"> Nombre de places disponibles :</i> {{$event->places}}
+                                <i class="bi bi-check-circle"> Nombre de places total :</i> {{ $event->places }}
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle"> Nombre de places disponibles :</i> {{ $reste }}
                             </li>
                         </ul>
                         <p>
-                            {{$event->description}}
+                            {{ $event->description }}
                         </p>
-                        
-                        <div class="contact">
-                            <div class="php-email-form">
-                                <div class="text-center"><a href="#"></a><button type="submit">Book</button></div></a>
+
+                        @if ($reste > 0)
+                            <div class="contact">
+                                <div class="php-email-form">
+                                    <div class="text-center">
+                                        @auth
+                                            @if (auth()->user()->hasRole('user'))
+                                                <a href="{{ route('reserver',$event->id) }}"><button type="submit">Book</button></a>
+                                            @else
+                                                <p>Votre rôle ne vous permet pas de réserver.</p>
+                                            @endif
+                                        @else
+                                            <a href="{{ route('login') }}"><button type="submit">Login to
+                                                    Book</button></a>
+                                        @endauth
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="contact">
+                                <div class="php-email-form">
+                                    <div class="text-center"><button>Places Non Disponibles !</button></div></a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

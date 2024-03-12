@@ -20,6 +20,7 @@ class Event extends Model
         'lieu',
         'category_id',
         'image',
+        'acceptation',
     ];
 
     public function user()

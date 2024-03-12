@@ -15,6 +15,7 @@ class Reservation extends Model
         'event_id',
         'date',
         'isValide',
+        'ticket_code',
     ];
 
     public function user()

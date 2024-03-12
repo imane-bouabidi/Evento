@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\categoryController;
+use App\Http\Controllers\eventController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('index');
 });
 
 Route::get('/dashboard', function () {
@@ -30,34 +32,54 @@ Route::middleware('auth')->group(function () {
 });
 
 //admin
+Route::middleware('auth')->group(function () {
 
-Route::get('/adminDash', [HomeController::class, 'adminDash'])->name('adminDash');
-Route::get('/updateUsers/{user_id}', [HomeController::class, 'updateUsers'])->name('updateUsers');
-Route::get('/updateUserDATA/{user_id}', [HomeController::class, 'updateUserDATA'])->name('updateUserDATA');
-Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
-Route::get('/deleteCat/{id}', [HomeController::class, 'deleteCat'])->name('deleteCat');
-Route::get('/updateCategory/{id}', [HomeController::class, 'updateCategory'])->name('updateCategory');
-Route::get('/updateCategoryDATA/{id}', [HomeController::class, 'updateCategoryDATA'])->name('updateCategoryDATA');
-Route::get('/addCategory', [HomeController::class, 'addCategory'])->name('addCategory');
-Route::get('/AddCat', [HomeController::class, 'AddCat'])->name('AddCat');
-Route::get('/statistiques', [HomeController::class, 'Statistiques'])->name('statistiques');
-Route::get('/evenements', [HomeController::class, 'evenements'])->name('evenements');
-Route::get('/valide_event_statut/{id}', [HomeController::class, 'valide_event_statut'])->name('valide_event_statut');
-Route::get('/rejeter_event_statut/{id}', [HomeController::class, 'rejeter_event_statut'])->name('rejeter_event_statut');
+    Route::get('/adminDash', [HomeController::class, 'adminDash'])->name('adminDash');
+    Route::get('/updateUsers/{user_id}', [HomeController::class, 'updateUsers'])->name('updateUsers');
+    Route::get('/updateUserDATA/{user_id}', [HomeController::class, 'updateUserDATA'])->name('updateUserDATA');
+    Route::get('/categories', [categoryController::class, 'categories'])->name('categories');
+    Route::get('/deleteCat/{id}', [categoryController::class, 'deleteCat'])->name('deleteCat');
+    Route::get('/updateCategory/{id}', [categoryController::class, 'updateCategory'])->name('updateCategory');
+    Route::get('/updateCategoryDATA/{id}', [categoryController::class, 'updateCategoryDATA'])->name('updateCategoryDATA');
+    Route::get('/addCategory', [categoryController::class, 'addCategory'])->name('addCategory');
+    Route::get('/AddCat', [categoryController::class, 'AddCat'])->name('AddCat');
+    Route::get('/statistiques', [HomeController::class, 'Statistiques'])->name('statistiques');
+    Route::get('/evenements', [eventController::class, 'evenements'])->name('evenements');
+    Route::get('/bannerUser/{id}', [HomeController::class, 'bannerUser'])->name('bannerUser');
+    Route::get('/valide_event_statut/{id}', [eventController::class, 'valide_event_statut'])->name('valide_event_statut');
+    Route::get('/rejeter_event_statut/{id}', [eventController::class, 'rejeter_event_statut'])->name('rejeter_event_statut');
+});
 
 
 // organisateur 
+Route::middleware('auth')->group(function () {
 
-Route::get('/organisateurDash', [HomeController::class, 'organisateurDash'])->name('organisateurDash');
-Route::get('/updateEvent', [HomeController::class, 'updateEvent'])->name('updateEvent');
-Route::get('/addEventView', [HomeController::class, 'addEventView'])->name('addEventView');
-Route::post('/AddEvent', [HomeController::class, 'AddEvent'])->name('AddEvent');
-Route::post('/updateEventView/{id}', [HomeController::class, 'updateEventView'])->name('updateEventView');
-Route::post('/UpdateEvent/{id}', [HomeController::class, 'UpdateEvent'])->name('UpdateEvent');
+    Route::get('/organisateurDash', [HomeController::class, 'organisateurDash'])->name('organisateurDash');
+    Route::get('/updateEvent', [eventController::class, 'updateEvent'])->name('updateEvent');
+    Route::get('/addEventView', [eventController::class, 'addEventView'])->name('addEventView');
+    Route::post('/AddEvent', [eventController::class, 'AddEvent'])->name('AddEvent');
+    Route::post('/updateEventView/{id}', [eventController::class, 'updateEventView'])->name('updateEventView');
+    Route::post('/UpdateEvent/{id}', [eventController::class, 'UpdateEvent'])->name('UpdateEvent');
+    Route::get('/valider_reservation/{id}', [HomeController::class, 'valider_reservation'])->name('valider_reservation');
+});
 
-
-Route::post('/search', 'HomeController@search')->name('search');
+//generale
+Route::post('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/filtrer/{id}', [HomeController::class, 'filtrer'])->name('filtrer');
 
 Route::get('/details/{id}', [HomeController::class, 'details'])->name('details');
 Route::get('/index', [HomeController::class, 'Index'])->name('index');
-require __DIR__.'/auth.php';
+
+//user
+Route::middleware('auth')->group(function () {
+
+    Route::get('/reserver/{id}', [HomeController::class, 'reserver'])->name('reserver');
+
+    Route::get('/userDash', [HomeController::class, 'userDash'])->name('userDash');
+
+    Route::get('/ticket/{id}', [HomeController::class, 'generate'])->name('generateTicket');
+
+    Route::get('/reservations', [HomeController::class, 'reservations'])->name('reservations');
+});
+
+require __DIR__ . '/auth.php';

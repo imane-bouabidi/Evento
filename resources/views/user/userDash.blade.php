@@ -83,94 +83,38 @@
         </div>
     </header><!-- End Header -->
 
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
-        <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h1>Welcome to <span>Evento</span></h1>
-                    <h2>The biggest event booking platform!</h2>
-                    <h2>Creating moments to remember</h2>
-
-                    {{-- <div class="btns">
-                        <a href="#menu" class="btn-menu animated fadeInUp scrollto">Book</a>
-                    </div> --}}
-                </div>
-
-            </div>
-        </div>
-    </section><!-- End Hero -->
 
     <main id="main">
-        <section id="book-a-table" class="book-a-table">
-            {{-- <div class="container" data-aos="fade-up"> --}}
-            <form action="{{ route('search') }}" method="POST" class="form">
-                @csrf
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 ">
-                        <input type="text" name="titre" class="form-control" id="titre" placeholder="Titre">
-                        {{-- <div class="validate"></div> --}}
-                    </div>
-                    <div class="col-lg-4 col-md-3 ">
-                        <button type="submit" class="">Search</button>
-                    </div>
-                </div>
-            </form>
-            {{-- </div> --}}
-        </section>
-        <!-- ======= Chefs Section ======= -->
-        <section id="chefs" class="chefs">
+        <section id="menu" class="menu section-bgN">
+            <br>
+            <br>
+            <br>
             <div class="container" data-aos="fade-up">
-
                 <div class="section-title">
-                    <h2>Trouvez ici</h2>
-                    <p>Evenements disponibles</p>
+                    <h2>Check</h2>
+                    <p>Your Reservations</p>
                 </div>
-
-                <div class="row" data-aos="fade-up" data-aos-delay="100">
-                    <div class="col-lg-12 d-flex justify-content-center">
-                        <ul id="menu-flters">
-                            <li><a href="{{route('index')}}">All</a></li>
-                            @foreach ($categories as $category)
-                                <li><a href="{{route('filtrer',$category->id)}}">{{ $category->name }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach ($events as $event)
-                        <div class="col-lg-4 col-md-6">
-                            <form action="{{ route('reserver', $event->id) }}" method="get">
-                                <div class="member" data-aos="zoom-in" data-aos-delay="100">
-                                    <img src="{{ asset('storage/event_images/' . $event->image) }}" class="img-fluid"
-                                        alt="">
-                                    <div class="member-info">
-                                        <div class="member-info-content">
-                                            <a href="{{ route('details', $event->id) }}">
-                                                <h4>{{ $event->titre }}</h4>
-                                            </a>
-                                            <span>{{ $event->lieu }}</span>
-                                            <br>
-                                            <div class="button">
-                                                <div class="form">
-                                                    <div class="text-center"><button type="submit">Book</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+                    @foreach ($reservations as $reservation)
+                        <div class="col-lg-6 menu-item filter-starters">
+                            <img src="{{ asset('storage/event_images/' . $reservation->event->image) }}"
+                                class="menu-img" alt="">
+                            <div class="menu-content">
+                                <a
+                                    href="{{ route('details', $reservation->event->id) }}">{{ $reservation->event->titre }}</a>
+                                    <a href="{{ route('generateTicket', $reservation->id) }}"><span>Print Ticket</span></a>
+                            </div>
+                            <div class="menu-ingredients">
+                                {{ $reservation->event->date }}
+                            </div>
+                            <div class="menu-ingredients">
+                                {{ $reservation->event->lieu }}
+                            </div>
                         </div>
                     @endforeach
                 </div>
-
-                <!-- Ajout de la pagination -->
-                <div class="pagination justify-content-center">
-                    {{ $events->links() }}
-                </div>
             </div>
-        </section><!-- End Chefs Section -->
+        </section>
 
     </main><!-- End #main -->
 
@@ -182,10 +126,6 @@
                 &copy; Copyright <strong><span>Restaurantly</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>

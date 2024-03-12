@@ -93,7 +93,7 @@
                     <ul class="flex items-center">
 
                         <li>
-                            <a href="{{route('index')}}"
+                            <a href="{{ route('dashboard') }}"
                                 class="flex items-end justify-end mr-4 hover:text-blue-100">
                                 <span class="inline-flex mr-1">
                                 </span>
@@ -132,7 +132,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="{{ route('adminDash') }}"
+                            <a href="{{ route('reservations') }}"
                                 class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-black dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-white dark:hover:border-gray-800 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px"
@@ -142,11 +142,11 @@
                                             fill="white" fill-rule="evenodd" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Gestion des users</span>
+                                <span class="ml-2 text-sm tracking-wide truncate">Liste des reservations</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('categories')}}"
+                            <a href="{{ route('organisateurDash') }}"
                                 class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-black dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-white dark:hover:border-gray-800 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px"
@@ -156,38 +156,10 @@
                                             fill="white" fill-rule="evenodd" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Listes des catégories</span>
+                                <span class="ml-2 text-sm tracking-wide truncate">Liste des evénements</span>
                             </a>
                         </li>
-                        
-                        <li>
-                            <a href="{{route('evenements')}}"
-                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-black dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-white dark:hover:border-gray-800 pr-6">
-                                <span class="inline-flex justify-center items-center ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <path clip-rule="evenodd"
-                                            d="m12 3.75c-4.55635 0-8.25 3.69365-8.25 8.25 0 4.5563 3.69365 8.25 8.25 8.25 4.5563 0 8.25-3.6937 8.25-8.25 0-4.55635-3.6937-8.25-8.25-8.25zm-9.75 8.25c0-5.38478 4.36522-9.75 9.75-9.75 5.3848 0 9.75 4.36522 9.75 9.75 0 5.3848-4.3652 9.75-9.75 9.75-5.38478 0-9.75-4.3652-9.75-9.75zm9.75-.75c.4142 0 .75.3358.75.75v3.5c0 .4142-.3358.75-.75.75s-.75-.3358-.75-.75v-3.5c0-.4142.3358-.75.75-.75zm0-3.25c-.5523 0-1 .44772-1 1s.4477 1 1 1h.01c.5523 0 1-.44772 1-1s-.4477-1-1-1z"
-                                            fill="white" fill-rule="evenodd" />
-                                    </svg>
-                                </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Listes des evenements</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('statistiques')}}"
-                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-black dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-white dark:hover:border-gray-800 pr-6">
-                                <span class="inline-flex justify-center items-center ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <path clip-rule="evenodd"
-                                            d="m12 3.75c-4.55635 0-8.25 3.69365-8.25 8.25 0 4.5563 3.69365 8.25 8.25 8.25 4.5563 0 8.25-3.6937 8.25-8.25 0-4.55635-3.6937-8.25-8.25-8.25zm-9.75 8.25c0-5.38478 4.36522-9.75 9.75-9.75 5.3848 0 9.75 4.36522 9.75 9.75 0 5.3848-4.3652 9.75-9.75 9.75-5.38478 0-9.75-4.3652-9.75-9.75zm9.75-.75c.4142 0 .75.3358.75.75v3.5c0 .4142-.3358.75-.75.75s-.75-.3358-.75-.75v-3.5c0-.4142.3358-.75.75-.75zm0-3.25c-.5523 0-1 .44772-1 1s.4477 1 1 1h.01c.5523 0 1-.44772 1-1s-.4477-1-1-1z"
-                                            fill="white" fill-rule="evenodd" />
-                                    </svg>
-                                </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Statistiques</span>
-                            </a>
-                        </li>
+
                     </ul>
                     <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2024</p>
                 </div>
@@ -198,7 +170,7 @@
 
                 <div class="mt-4 mx-4 ">
 
-                    <h1 class="text-center  m-10">Gestion Des horaires</h1>
+                    <h1 class="text-center  m-10">Liste des reservations</h1>
                     <!-- Client Table -->
                     <div class="mt-4 mx-4">
                         <div class="w-full overflow-hidden rounded-lg shadow-xs">
@@ -207,71 +179,81 @@
                                     <thead>
                                         <tr
                                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                            <th class="px-4 py-3">Id</th>
-                                            <th class="px-4 py-3">Nom</th>
-                                            <th class="px-4 py-3">Email</th>
-                                            <th class="px-4 py-3">Role</th>
-                                            <th class="px-4 py-3">Activity</th>
-                                            <th class="px-4 py-3">Actions</th>
+                                            <th class="px-4 py-3">Titre</th>
+                                            <th class="px-4 py-3">description</th>
+                                            <th class="px-4 py-3">date</th>
+                                            <th class="px-4 py-3">lieu</th>
+                                            <th class="px-4 py-3">Categorie</th>
+                                            <th class="px-4 py-3">Reserve par</th>
+                                            <th class="px-4 py-3">Statut</th>
+                                            <th class="px-4 py-3">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                        @foreach ($users as $user)
-                                            <form action="{{ route('updateUsers', $user->id) }}" method="GET">
+                                        @foreach ($reservations as $reservation)
+                                            <form action="{{ route('valider_reservation', $reservation->id) }}"
+                                                method="get">
+                                                @csrf
                                                 <tr
                                                     class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
                                                     <td class="px-4 py-3">
                                                         <div class="flex items-center text-sm">
                                                             <div>
-                                                                {{ $user->id }}
+                                                                {{ $reservation->event->titre }}
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td class="px-4 py-3">
                                                         <div class="flex items-center text-sm">
                                                             <div>
-                                                                {{ $user->name }}
+                                                                {{ $reservation->event->description }}
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td class="px-4 py-3">
                                                         <div class="flex items-center text-sm">
                                                             <div>
-                                                                {{ $user->email }}
+                                                                {{ $reservation->event->date }}
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td class="px-4 py-3">
                                                         <div class="flex items-center text-sm">
-                                                            {{ implode(', ', $user->getRoleNames()->toArray())}}
+                                                            {{ $reservation->event->lieu }}
                                                         </div>
                                                     </td>
+                                                    <td class="px-4 py-3">
+                                                        <div class="flex items-center text-sm">
+                                                            {{ $reservation->event->category->name }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="px-4 py-3">
+                                                        <div class="flex items-center text-sm">
+                                                            {{ $reservation->user->name }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="px-4 py-3 text-sm">
+                                                        <div class="flex items-center text-sm">
+                                                            <div>
+                                                                {{ $reservation->isValide }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    @if ($reservation->isValide != "validee")
                                                     <td class="px-4 py-3 text-sm">
                                                         <div class="flex items-center text-sm">
                                                             <div>
                                                                 @csrf
                                                                 <a href=""
                                                                     class="px-2 py-1 font-semibold leading-tight text-black-700 bg-green-100 rounded-full dark:bg-red-700 dark:text-red-100">
-                                                                    <button>
-                                                                        Update
-                                                                    </button>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="px-4 py-3 text-sm">
-                                                        <div class="flex items-center text-sm">
-                                                            <div>
-                                                                @csrf
-                                                                <a href="{{route('bannerUser',$user->id)}}"
-                                                                    class="px-2 py-1 font-semibold leading-tight text-black-700 bg-green-100 rounded-full dark:bg-red-700 dark:text-red-100">
                                                                     <button type="submit">
-                                                                        Banner User
+                                                                        Valider
                                                                     </button>
                                                                 </a>
                                                             </div>
                                                         </div>
                                                     </td>
+                                                    @endif
                                                 </tr>
                                             </form>
                                         @endforeach

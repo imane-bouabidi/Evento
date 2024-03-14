@@ -77,9 +77,10 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        $categories= Categorie::all();
         $titre = $request->input('titre');
         $events = Event::where('titre', 'LIKE', "%$titre%")->where('statut', 'valide')->paginate(3);
-        return view('index', compact('events'));
+        return view('index', compact(['events','categories']));
     }
 
     public function reserver($id)

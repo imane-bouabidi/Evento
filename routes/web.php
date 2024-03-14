@@ -82,4 +82,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservations', [HomeController::class, 'reservations'])->name('reservations');
 });
 
+Route::get('/events', [eventController::class, 'events'])->name('events');
 require __DIR__ . '/auth.php';

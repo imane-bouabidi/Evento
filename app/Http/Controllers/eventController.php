@@ -103,4 +103,12 @@ class eventController extends Controller
         $event->save();
         return redirect()->route('evenements');
     }
+    public function events()
+    {
+        $events = Event::all();
+
+        foreach ($events as $event) {
+            dd($event->reservations);
+        }
+    }
 }

@@ -99,11 +99,19 @@
                         <div class="col-lg-6 menu-item filter-starters">
                             <img src="{{ asset('storage/event_images/' . $reservation->event->image) }}"
                                 class="menu-img" alt="">
-                            <div class="menu-content">
-                                <a
-                                    href="{{ route('details', $reservation->event->id) }}">{{ $reservation->event->titre }}</a>
-                                    <a href="{{ route('generateTicket', $reservation->id) }}"><span>Print Ticket</span></a>
+                            @if ($reservation->isValide == 'validee')
+                                <div class="menu-content">
+                                    <a
+                                        href="{{ route('details', $reservation->event->id) }}">{{ $reservation->event->titre }}</a>
+                                    <a href="{{ route('generateTicket', $reservation->id) }}"><span>Print
+                                            Ticket</span></a>
+                                </div>
+                            @else
+                            <div class="menu-ingredients">
+                                <p>En attent de validation</p>
                             </div>
+                            @endif
+
                             <div class="menu-ingredients">
                                 {{ $reservation->event->date }}
                             </div>
